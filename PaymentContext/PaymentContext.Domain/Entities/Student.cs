@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Flunt.Validations;
 using PaymentContext.Domain.ValueObjects;
 using PaymentContext.Shared.Entities;
 
@@ -32,8 +33,13 @@ namespace PaymentContext.Domain.Entites
                 if (sub.Active)
                     hasSubscriptionActive = true;
 
-            if (hasSubscriptionActive)
-                AddNotification("Student.Subscriptions", "Você já possui uma assinatura ativa");
+            AddNotifications(new Contract()
+                .Requires()
+                .IsFalse(hasSubscriptionActive, "Student.Subscriptions", "Você já tem ativa")
+                .IsGreaterThan(0, subscription.Payments.Count, "Student.Subscriptions.Payment", "Esta assinatura não possui pagamentos"));
+
+            // if (hasSubscriptionActive)
+            //     AddNotification("Student.Subscriptions", "Você já possui uma assinatura ativa");
         }
 
     }
