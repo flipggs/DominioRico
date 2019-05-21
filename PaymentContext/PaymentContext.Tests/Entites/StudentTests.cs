@@ -39,14 +39,7 @@ namespace PaymentContext.Tests.Entites
         [TestMethod]
         public void ShouldReturnErrorWhenHadActiveSubscription()
         {
-            var payment = new PayPalPayment("12345678",
-                            DateTime.Now,
-                            DateTime.Now.AddDays(5),
-                            10,
-                            10,
-                            "WAYNE CORP",
-                            _document,
-                            _adress, _email);
+            var payment = new PayPalPayment("12345678", DateTime.Now, DateTime.Now.AddDays(5), 10, 10, "WAYNE CORP", _document, _adress, _email);
 
             _subscription.AddPayment(payment);
             _student.AddSubscription(_subscription);
@@ -64,7 +57,7 @@ namespace PaymentContext.Tests.Entites
         }
 
         [TestMethod]
-        public void ShouldReturnSuccessWhenHadNoActiveSubscription()
+        public void ShouldReturnSuccessWhenAddSubscription()
         {
             var payment = new PayPalPayment("12345678",
                            DateTime.Now,
