@@ -19,6 +19,7 @@ namespace PaymentContext.Domain.Entites
             Barcode = barcode;
             BoletoNumber = boletoNumber;
         }
+        
 
         public string Barcode { get; private set; }
         public string BoletoNumber { get; private set; }
